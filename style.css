@@ -1,0 +1,53 @@
+:root {
+  --page: #E4E0F2;
+  --body: #2A2950;
+  --key: #3A3968;
+  --key-hover: #47467C;
+  --fn: #C9C6F0;
+  --op: #F5B942;
+  --eq: #5EEAD4;
+  --text: #F4F3FF;
+  --dark: #1C1B38;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  min-height: 100vh; display: grid; place-items: center; padding: 20px;
+  font-family: "Outfit", system-ui, sans-serif; background: var(--page);
+}
+.calc {
+  width: min(100%, 340px); padding: 20px; border-radius: 32px;
+  background: var(--body); color: var(--text);
+  box-shadow: 0 30px 60px -20px rgba(42, 41, 80, .55);
+}
+.screen { padding: 18px 12px 14px; text-align: right; min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end; }
+.expr { min-height: 1.4em; font-size: 1.05rem; color: #A9A6D8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.result {
+  font-size: 3.4rem; font-weight: 300; line-height: 1.1; font-variant-numeric: tabular-nums;
+  overflow: hidden; white-space: nowrap; transition: font-size .15s;
+}
+.result.small { font-size: 2.3rem; }
+.result.tiny { font-size: 1.6rem; }
+.result.error { color: #FF8FA3; }
+
+.keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+button {
+  height: 64px; border: 0; border-radius: 20px; cursor: pointer;
+  font: inherit; font-size: 1.5rem; font-weight: 500;
+  background: var(--key); color: var(--text);
+  transition: background .2s, transform .12s;
+}
+button:hover { background: var(--key-hover); }
+button:active, button.pressed { transform: scale(.92); }
+.fn { background: var(--fn); color: var(--dark); }
+.fn:hover { background: #fff; }
+.op { background: var(--op); color: var(--dark); font-size: 1.8rem; }
+.op:hover { background: #FFD27A; }
+.op.active { background: #fff; box-shadow: 0 0 0 3px var(--op); }   /* shows which operator is waiting */
+.eq { background: var(--eq); color: var(--dark); font-size: 1.8rem; }
+.eq:hover { background: #99F6E4; }
+.hint { margin-top: 16px; text-align: center; font-size: .78rem; color: #8F8CC4; }
+:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+@media (max-width: 360px) { button { height: 56px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+.credit { position: fixed; bottom: 14px; left: 0; right: 0; text-align: center; font-size: .8rem; font-weight: 500; color: #2A2950; opacity: .75; }
